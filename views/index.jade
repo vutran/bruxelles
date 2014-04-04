@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        title= '#Bruxelles - Developed By Vu Tran'
+        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js')
+        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js')
+        link(rel='stylesheet', type='text/css', href='assets/main.css')
+        if mediaResults
+            script.
+                var mediaResults = !{JSON.stringify(mediaResults)};
+        script(src='assets/main.js')
+    body
+        h1#colophon
+            | Developed by
+            a(href='http://vu-tran.com/', target='_blank') Vu Tran
