@@ -62,4 +62,8 @@ var renderApp = function(res, mediaResults)
     res.render('index', {mediaResults: mediaResults});
 };
 
-app.listen(3000);
+// Set the listen port
+var listenPort = process.env.PORT ? process.env.PORT : 3000;
+
+// Listen for app
+app.listen(listenPort);
