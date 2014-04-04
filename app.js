@@ -17,17 +17,24 @@ app.get('/', function(req, res) {
     // Retrieve env variables
     var
         instagramClientId = process.env.INSTAGRAM_CLIENT_ID || false,
-        instagramClientSecert = process.env.INSTAGRAM_CLIENT_SECRET || false,
+        instagramClientSecret = process.env.INSTAGRAM_CLIENT_SECRET || false,
         redisUrl = process.env.REDISTOGO_URL || false;
 
+    // Load local credentials if necessary
+    if (!process.env.NODE_ENV) {
+        var creds = require('./creds.json');
+        instagramClientId = creds.clientId;
+        instagramClientSecret = creds.clientSecret;
+    }
+
     // Check for the instagram client ID
-    if (instagramClientId && instagramClientSecert) {
+    if (instagramClientId && instagramClientSecret) {
         // Create an Instagram client
         var client = ig.instagram();
 
         // Create Redis client
         var redisClient = false;
-        if (process.env.REDISTOGO_URL) {
+        if (redisUrl) {
             rtg = url.parse(redisUrl);
             redisClient = redis.createClient(rtg.port, rtg.hostname);
             redisClient.auth(rtg.auth.split(":")[1]);
@@ -38,7 +45,7 @@ app.get('/', function(req, res) {
         // Set client credentials
         client.use({
             client_id : instagramClientId,
-            client_secret : instagramClientSecert
+            client_secret : instagramClientSecret
         });
 
         // Retrieve recent media (cached)

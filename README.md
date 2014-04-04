@@ -11,6 +11,16 @@ Just a simple NodeJS pulling in Instagram photos that are tagged as *bruxelles*.
 - Jade
 - RedisToGo
 
+# Local Environment
+
+For local development, create a `creds.json` in the project root.
+
+## Sample `creds.json`
+
+    {
+        "clientId" : "YOUR_INSTAGRAM_CLIENT_ID",
+        "clientSecret" : "YOUR_INSTAGRAM_CLIENT_SECRET"
+    }
 
 # Environmental Variables
 
