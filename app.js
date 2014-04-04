@@ -5,7 +5,7 @@ var
     jade = require('jade'),
     ig = require('instagram-node'),
     redis = require('redis'),
-    redisClient = redis.createClient(process.env.REDISTOGO_URL);
+    url = require("url");
 
 // Load Jade Engine
 app.set('view engine', 'jade');
@@ -15,7 +15,18 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
 
+    // Create an Instagram client
     var client = ig.instagram();
+
+    // Create Redis client
+    var redisClient = false;
+    if (process.env.REDISTOGO_URL) {
+        rtg = url.parse(process.env.REDISTOGO_URL);
+        redisClient = redis.createClient(rtg.port, rtg.hostname);
+        redisClient.auth(rtg.auth.split(":")[1]);
+    } else {
+        redisClient = redis.createClient();
+    }
 
     // Set client credentials
     client.use({
