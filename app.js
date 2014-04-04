@@ -5,7 +5,7 @@ var
     jade = require('jade'),
     ig = require('instagram-node'),
     redis = require('redis'),
-    redisClient = redis.createClient();
+    redisClient = redis.createClient(process.env.REDISTOGO_URL);
 
 // Load Jade Engine
 app.set('view engine', 'jade');
