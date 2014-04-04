@@ -14,11 +14,11 @@ Just a simple NodeJS pulling in Instagram photos that are tagged as *bruxelles*.
 
 # Environmental Variables
 
-`process.env.INSTAGRAM_API_ID`
+`process.env.INSTAGRAM_CLIENT_ID`
 
 Your Instagram API client ID.
 
-`process.env.INSTAGRAM_API_SECRET`
+`process.env.INSTAGRAM_CLIENT_SECRET`
 
 Your Instagram API client secret.
 
